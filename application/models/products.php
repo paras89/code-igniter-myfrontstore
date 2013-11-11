@@ -10,11 +10,21 @@ class Products extends CI_Model
         parent::__construct();
     }
 
+    /**
+     * Return product search results for $searchTerm.
+     * @param $searchTerm
+     * @return array
+     */
     function getProducts($searchTerm)
     {
         return $this->_queryProducts($searchTerm);
     }
 
+    /**
+     * Load Product by Id.
+     * @param $id
+     * @return array
+     */
     function loadProduct($id)
     {
         $query = $this->db->query("SELECT PD.*, CATA.category_name AS subcategory, CATA.parentcategory_name AS category FROM product_data AS PD
@@ -28,6 +38,11 @@ class Products extends CI_Model
         return $product;
     }
 
+    /**
+     * Query Products for a search term.
+     * @param $searchTerm
+     * @return array
+     */
     protected function _queryProducts($searchTerm)
     {
         $query = $this->db->query("SELECT * from product_data as Product WHERE Product.product_id = '$searchTerm' OR Product.group_id = '$searchTerm'

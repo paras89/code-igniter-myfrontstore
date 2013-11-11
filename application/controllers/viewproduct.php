@@ -3,6 +3,9 @@
 class Viewproduct extends CI_Controller {
 
 
+    /**
+     * Product View Action.
+     */
     public function index()
     {
         $this->load->model('products','',TRUE);
@@ -11,5 +14,3 @@ class Viewproduct extends CI_Controller {
     }
 }
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */

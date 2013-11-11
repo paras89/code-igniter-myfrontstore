@@ -2,7 +2,9 @@
 
 class Search extends CI_Controller {
 
-
+    /**
+     * Search Results Action.
+     */
     public function index()
     {
         $this->load->model('products','',TRUE);
@@ -10,6 +12,3 @@ class Search extends CI_Controller {
         $this->load->view('searchresult',array('products' => $products));
     }
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */

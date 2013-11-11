@@ -9,7 +9,10 @@ class Initializer extends CI_Model
         parent::__construct();
     }
 
-
+    /**
+     * Check if the application is installed.
+     * @return bool
+     */
     protected function _isInstalled()
     {
         $counts = $this->db->query("SELECT count(*) AS COUNT
@@ -26,6 +29,9 @@ class Initializer extends CI_Model
         return true;
     }
 
+    /**
+     * Check installation, if not installed, install it.
+     */
     function initialize()
     {
         if (!$this->_isInstalled()) {
@@ -34,6 +40,9 @@ class Initializer extends CI_Model
         return;
     }
 
+    /**
+     * Setup Categories and Products.
+     */
     protected function _install()
     {
         $this->_installTables();
@@ -42,6 +51,9 @@ class Initializer extends CI_Model
         $this->_saveProducts($query);
     }
 
+    /**
+     * Setup database Tables.
+     */
     protected function _installTables()
     {
         // Create product data table.
@@ -67,6 +79,10 @@ class Initializer extends CI_Model
 );");
     }
 
+    /**
+     * Setup Categories.
+     * @param $query
+     */
     protected function _saveCategories($query)
     {
 
@@ -88,6 +104,11 @@ class Initializer extends CI_Model
 
     }
 
+    /**
+     * Check if a category is already setup.
+     * @param $category
+     * @return bool
+     */
     protected function _checkCategoryExists($category)
     {
         $counts = $this->db->query("SELECT COUNT(*) as COUNT FROM category_data WHERE category_name = '$category'");
@@ -99,6 +120,12 @@ class Initializer extends CI_Model
         return true;
     }
 
+    /**
+     * Check if a sub category already exists with the exact category tree.
+     * @param $category
+     * @param $subCategory
+     * @return bool
+     */
     protected function _checkSubCategoryExists($category, $subCategory)
     {
         $counts = $this->db->query("SELECT COUNT(*) AS COUNT FROM category_data WHERE category_name = '$subCategory' AND parentcategory_name = '$category'");
@@ -110,6 +137,10 @@ class Initializer extends CI_Model
         return true;
     }
 
+    /**
+     * Set up products.
+     * @param $query
+     */
     protected function _saveProducts($query)
     {
         foreach ($query->result() as $dataRow) {
