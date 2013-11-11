@@ -58,25 +58,30 @@ class Initializer extends CI_Model
     {
         // Create product data table.
         $this->db->query("CREATE TABLE `mystorefront_codei`.`product_data`(
-  `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `product_id` VARCHAR(256) NOT NULL COMMENT 'Product Id',
-  `group_id` VARCHAR(256) DEFAULT 'NULL' COMMENT 'Group ID',
-  `title` VARCHAR(256) COMMENT 'Title',
-  `store` VARCHAR(256) COMMENT 'Store',
-  `price` FLOAT COMMENT 'Price',
-  `shipping_duration` SMALLINT COMMENT 'Shipping Duration',
-  `category_id` INT COMMENT 'Category Id',
-  `subcategory_id` INT COMMENT 'Subcategory Id',
-  PRIMARY KEY (`id`, `product_id`)
-);
-");
+                         `id` BIGINT NOT NULL AUTO_INCREMENT,
+                         `product_id` VARCHAR(256) NOT NULL COMMENT 'Product Id',
+                         `group_id` VARCHAR(256) DEFAULT 'NULL' COMMENT 'Group ID',
+                         `title` VARCHAR(256) COMMENT 'Title',
+                         `store` VARCHAR(256) COMMENT 'Store',
+                         `price` FLOAT COMMENT 'Price',
+                         `shipping_duration` SMALLINT COMMENT 'Shipping Duration',
+                         `category_id` INT COMMENT 'Category Id',
+                         `subcategory_id` INT COMMENT 'Subcategory Id',
+                          PRIMARY KEY (`id`, `product_id`)
+                          );
+                         ");
 
         $this->db->query("CREATE TABLE `mystorefront_codei`.`category_Data`(
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `category_name` VARCHAR(256) NOT NULL,
-  `parentcategory_name` VARCHAR(256),
-  PRIMARY KEY (`id`)
-);");
+                          `id` INT NOT NULL AUTO_INCREMENT,
+                          `category_name` VARCHAR(256) NOT NULL,
+                          `parentcategory_name` VARCHAR(256),
+                          PRIMARY KEY (`id`)
+                          );");
+
+        $this->db->query("ALTER TABLE product_data
+                        ADD FOREIGN KEY (category_id)
+                         REFERENCES category_data(id)");
+
     }
 
     /**

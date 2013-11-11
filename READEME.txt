@@ -1,12 +1,13 @@
 STEPS FOR SETTING UP:
 
-1. SETUP a localhost to any URL.
+1. SETUP a localhost to any URL: www.myapp.com
 2. Make sure that requests are hitting the correct folder which has the code base.
-3. Create Mysql Database: mystorefront_codei, username: root, password <blank>
+3. Create Mysql Database: mystorefront_codei, username: root, password <blank>, check config/database.php to see database connection configurations for the code.
 4. Import SQL : movie_data.sql into the above database. movie_data.sql holds the data imported from the catalog.csv provided.
 5. After import the first time the application is run it sets up the category and product data tables by itself. 
    Therefore, it may take longer than usual the first time the application is run; it installs the data in tables.
 6. The requirments for running the app are same as for running code ingniter framework.
+7. mod_rewrite Apache module should be enabled to allow index.php re-writes.s
 
 
 Design:
@@ -24,4 +25,7 @@ The model queries the DB and returns the result. Then these results are passed o
 
 The PDP page is passed the id of the product from the search results page and queries to DB to return all the product data are run from the products controller. 
 This data is then displayed in the view of the controller.
+
+The application has a standard head.html file to add head section of the html to each view. This file does generic tasks like including css/js on all pages
+across the application.
 

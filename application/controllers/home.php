@@ -9,10 +9,13 @@ class Home extends CI_Controller {
     public function index()
     {
 
+
         $this->load->model('initializer','',TRUE);
         // Initialize app.
         $this->initializer->initialize();
-        $this->load->view('home');
+        $data['searchbox'] = $this->load->view('searchbox', NULL, TRUE);
+
+        $this->load->view('home', $data);
     }
 }
 

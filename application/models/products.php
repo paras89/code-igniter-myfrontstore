@@ -45,17 +45,19 @@ class Products extends CI_Model
      */
     protected function _queryProducts($searchTerm)
     {
-        $query = $this->db->query("SELECT * from product_data as Product WHERE Product.product_id = '$searchTerm' OR Product.group_id = '$searchTerm'
+        $products = array();
+        if ($searchTerm = mysql_real_escape_string($searchTerm)) {
+            $query = $this->db->query("SELECT * from product_data as Product WHERE Product.product_id = '$searchTerm' OR Product.group_id = '$searchTerm'
                                   OR Product.title = '$searchTerm' OR '$searchTerm' = (SELECT category_name FROM
                                                                                category_data as CAT WHERE CAT.id = Product.category_id )
                                   OR '$searchTerm' IN (SELECT category_name FROM category_data as CAT WHERE CAT.parentcategory_name = '$searchTerm')
                  ");
 
-        $products = array();
-        foreach ($query->result() as $dataRow) {
-            $products[] =  $dataRow;
-        }
 
+            foreach ($query->result() as $dataRow) {
+                $products[] = $dataRow;
+            }
+        }
         return $products;
     }
 

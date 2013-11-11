@@ -1,7 +1,11 @@
-<div style="padding:60px; background:#F6F6F6; border:1px solid #E4E4E4; ">
+<html>
+<?php include('/assets/head.html');?>
+<body>
+<?php include('/assets/header.html');?>
+
+<div class = "product-details">
     <h1 style="">Product Versions: </h1>
-    <table summary="Product Versions" id="box-table-a" style="padding:10px; background:#F6F6F6; border:1px solid #E4E4E4;
-                                                          width:80% ">
+    <table summary="Product Versions" id="box-table-a" class= "pdp-table">
         <thead style="">
         <tr>
             <th scope="col">Version</th>
@@ -36,6 +40,7 @@ foreach($product as $simple):
 </tbody>
 </table>
 </div>
-
+</body>
+</html>
 <?php
 
