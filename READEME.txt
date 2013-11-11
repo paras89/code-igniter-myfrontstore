@@ -1,0 +1,27 @@
+STEPS FOR SETTING UP:
+
+1. SETUP a localhost to any URL.
+2. Make sure that requests are hitting the correct folder which has the code base.
+3. Create Mysql Database: mystorefront_codei, username: root, password <blank>
+4. Import SQL : movie_data.sql into the above database. movie_data.sql holds the data imported from the catalog.csv provided.
+5. After import the first time the application is run it sets up the category and product data tables by itself. 
+   Therefore, it may take longer than usual the first time the application is run; it installs the data in tables.
+6. The requirments for running the app are same as for running code ingniter framework.
+
+
+Design:
+
+    The Application follows MVC framework. It provides basic functionality through which a user can go to the app home page
+and search for products using any of their fields. 
+
+There are three main views: 
+ 1. Home
+ 2. Search Results Page.
+ 3. Product Details Page.
+
+On the Home page we have a search box available in which when we enter something the call is sent to the model through the search controller.
+The model queries the DB and returns the result. Then these results are passed over to the view where the Links to the PDP for each product are displayed.
+
+The PDP page is passed the id of the product from the search results page and queries to DB to return all the product data are run from the products controller. 
+This data is then displayed in the view of the controller.
+
