@@ -14,7 +14,7 @@ if(count($products) == 0)
 }
 echo " <ul class \"productgrid\">";
 foreach($products as $key => $product)
-{
+{ 
     $groupId = $product->group_id;
 
     if($currentGroup != $product->group_id && isset($groupId))
@@ -31,7 +31,7 @@ foreach($products as $key => $product)
         <div class= "product">
          <li>
 
-     <a href="viewproduct?id=$id"><?php echo $product->title ?></a>
+     <a href="viewproduct?id=<?php echo $id?>"><?php echo $product->title ?></a>
 
              </li>
             </div>

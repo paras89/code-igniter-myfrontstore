@@ -50,7 +50,7 @@ class Products extends CI_Model
             $query = $this->db->query("SELECT * from product_data as Product WHERE Product.product_id = '$searchTerm' OR Product.group_id = '$searchTerm'
                                   OR Product.title = '$searchTerm' OR '$searchTerm' = (SELECT category_name FROM
                                                                                category_data as CAT WHERE CAT.id = Product.category_id )
-                                  OR '$searchTerm' IN (SELECT category_name FROM category_data as CAT WHERE CAT.parentcategory_name = '$searchTerm')
+                                  OR '$searchTerm' = (SELECT category_name FROM category_data as CAT WHERE CAT.id = Product.subcategory_id)
                  ");
 
 
